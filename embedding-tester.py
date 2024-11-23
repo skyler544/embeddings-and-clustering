@@ -4,19 +4,9 @@ import faiss
 from sklearn.cluster import KMeans
 
 # Step 1: Define the functional requirements for EarlyBird system
-# TODO setup the requirements in a more super way
-requirements = [
-    "Allow users to create an account",
-    "Allow users to search for available flights",
-    "Allow users to book a flight",
-    "Send notifications to users regarding flight updates",
-    "Process payment transactions",
-    "Allow users to cancel a flight",
-    "Allow users to view their booking history",
-    "Integrate payment gateways for credit card processing",
-    "Manage flight availability and booking capacity",
-    "Generate booking confirmation emails"
-]
+requirements_file = "early-bird-requirements.txt"
+with open(requirements_file, "r") as file:
+    requirements = [line.strip() for line in file if line.strip()]  # Remove empty lines and strip spaces
 
 # Step 2: Convert Requirements into Embeddings using Sentence-BERT
 print("Generating embeddings for the requirements...")
