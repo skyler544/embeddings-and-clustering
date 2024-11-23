@@ -21,6 +21,9 @@ python -m venv .
 pip install sentence-transformers faiss-cpu scikit-learn numpy
 ```
 
+- Alternatively, run the setup script (does exactly what you see in the shell script above)
+- `setup-venv-and-dependencies.sh`
+
 ## Usage
 
 The list of requirements lives in the file `early-bird-requirements.txt`. These requirements come from the "EarlyBird Case Study" as provided to students at the FH Technikum Wien for the Software Architecture module.
