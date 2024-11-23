@@ -52,19 +52,9 @@ clustered_requirements = {i: [] for i in range(n_clusters)}
 for i, label in enumerate(labels):
     clustered_requirements[label].append(requirements[i])
 
-# Step 5: Output the Clusters and Name the Components
-print("\nClustered Requirements and Suggested Component Names:")
+# Step 5: Output the Clusters
+print("\nClustered Requirements:")
 for cluster, items in clustered_requirements.items():
     print(f"\nCluster {cluster + 1}:")
     for item in items:
         print(f"  - {item}")
-
-# Suggested Component Names based on clusters (just an example)
-print("\nSuggested Component Names for each Cluster:")
-for cluster, items in clustered_requirements.items():
-    if cluster == 0:
-        print(f"Component for Cluster {cluster + 1}: User Management")
-    elif cluster == 1:
-        print(f"Component for Cluster {cluster + 1}: Flight Booking & Search")
-    elif cluster == 2:
-        print(f"Component for Cluster {cluster + 1}: Payments & Notifications")
