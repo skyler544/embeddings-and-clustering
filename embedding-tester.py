@@ -11,10 +11,10 @@ with open(requirements_file, "r") as file:
 # Step 2: Convert Requirements into Embeddings using Sentence-BERT
 print("Generating embeddings for the requirements...")
 
-# Initialize the Sentence-BERT model
-# model = SentenceTransformer('all-MiniLM-L6-v2')
-# model = SentenceTransformer('paraphrase-distilroberta-base-v1')
-model = SentenceTransformer('stsb-roberta-large')
+# Pick a model from:
+# https://www.sbert.net/docs/sentence_transformer/pretrained_models.html
+# These sentence transformer models are luckily much smaller than full LLMs
+model = SentenceTransformer('all-mpnet-base-v2')
 
 # Generate embeddings for each requirement
 embeddings = model.encode(requirements)
