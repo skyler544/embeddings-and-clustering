@@ -2,7 +2,7 @@
 
 This repository contains some of my efforts to learn how machine learning works on a more technical level.
 
-## `[embedding-tester.py](embedding-tester.py)`
+## `embedding-tester.py`
 
 This script programmatically clusters requirements based on their semantic similarity. This might be useful for drafting application architecture given a list of plain-text requirements.
 
@@ -22,11 +22,11 @@ pip install sentence-transformers faiss-cpu scikit-learn numpy
 ```
 
 - Alternatively, run the setup script (does exactly what you see in the shell script above)
-- `[setup-venv-and-dependencies.sh](setup-venv-and-dependencies.sh)`
+- `setup-venv-and-dependencies.sh`
 
 ## Usage
 
-The list of requirements lives in the file `[early-bird-requirements.txt](early-bird-requirements.txt)`. These requirements come from the "EarlyBird Case Study" as provided to students at the FH Technikum Wien for the Software Architecture module.
+The list of requirements lives in the file `early-bird-requirements.txt`. These requirements come from the "EarlyBird Case Study" as provided to students at the FH Technikum Wien for the Software Architecture module.
 The script reads this file, generates sentence-level embeddings, puts them into a vector database, then clusters the sentences. The `n_clusters` variable can be changed as needed.
 
 The script downloads model files the first time they're used, meaning the first run of the script will take much longer than subsequent runs.
