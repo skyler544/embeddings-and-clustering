@@ -1,0 +1,41 @@
+Breakfast must be delivered in under 25 minutes to all city areas.
+Offer predefined breakfasts (e.g., mini-breakfast, luxury breakfast).
+Customers can customize their breakfast from a list of simple products (e.g., croissants, orange juice).
+Prepackaged products can contain simple products or other prepackaged products.
+An order consists of a variety of simple and/or prepackaged products.
+Each product has a unit (e.g., grams) and a price per unit (in Euros).
+Customers place orders exclusively via phone.
+Customers provide a seven-digit customer number (including area code and checksum).
+Phone clerks verify the customer's status (e.g., not blacklisted for bad payment behavior).
+Customers can directly name products when ordering.
+Customers can choose products from a list based on criteria (e.g., calories, price).
+Customers can use a previous order as a blueprint for new orders.
+Each order can reference one blueprint at most.
+A blueprint can be reused multiple times.
+Each customer has one predefined address, eliminating the need to specify a delivery address.
+Customers receive an eight-digit order number with a checksum after placing an order.
+Packing clerks assemble products and place them in paper bags.
+Packing clerks create labels with their name, customer’s name, address, order number, and delivery clerk.
+Two invoices are printed for each order, showing label data, products, amounts, prices, and total cost.
+Each reprinted invoice gets a unique number.
+Delivery clerks optimize routes using a spreadsheet and print them.
+Delivery clerks deliver bags and invoices, with customers signing one copy and keeping the other.
+Customers can inquire about order status using their order number.
+Orders can be canceled before assembly.
+Orders cannot be canceled after assembly.
+Cancellations cannot be undone.
+Order updates are not allowed; customers must cancel and place a new order.
+A web application will automate existing processes without altering them.
+The web application will replace phone ordering, label text processing, and route planning tools.
+The web application must support specified browsers.
+Customers, packing clerks, delivery clerks, and managers will use the web application.
+Customers confirm delivery by entering a password in a browser on the delivery clerk’s smartphone.
+The system will include a browser-based, unauthenticated product search feature.
+Customers can order via text messages by sending a predefined string to the company number.
+Each product has a unique product code.
+The system will reply to text orders with the assigned order number.
+Order cancellations can be made by sending a specific text string to the company number.
+The payment system will receive records for expected payments after packing completion.
+Payment records will include customer number, order number, amount, and payment due date.
+A nightly business report will be generated automatically for managers.
+The business report will include orders, products, amounts, clerks, customers, addresses, and order numbers.
