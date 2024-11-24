@@ -2,6 +2,7 @@ from sentence_transformers import SentenceTransformer
 import numpy as np
 import faiss
 from sklearn.cluster import KMeans
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Step 1: Define the functional requirements for EarlyBird system
 requirements_file = "early-bird-requirements.txt"
@@ -39,10 +40,8 @@ print(f"Number of embeddings in FAISS index: {index.ntotal}")
 # Step 4: Perform K-Means Clustering to group the requirements
 
 # Set the number of clusters (adjust this based on your needs)
-# TODO try changing the number of clusters
-n_clusters = 3
+n_clusters = 5
 
-# TODO try other clustering strategies
 # Perform KMeans clustering
 kmeans = KMeans(n_clusters=n_clusters, random_state=0)
 labels = kmeans.fit_predict(embeddings_np)
@@ -52,9 +51,24 @@ clustered_requirements = {i: [] for i in range(n_clusters)}
 for i, label in enumerate(labels):
     clustered_requirements[label].append(requirements[i])
 
-# Step 5: Output the Clusters
+# Step 5: Determine the topic of each cluster
+def extract_keywords(requirements, top_n=3):
+    """Extract top keywords from a list of requirements using TF-IDF."""
+    vectorizer = TfidfVectorizer(stop_words='english')
+    X = vectorizer.fit_transform(requirements)
+    feature_names = vectorizer.get_feature_names_out()
+    scores = X.sum(axis=0).A1  # Sum TF-IDF scores across all documents
+    keywords = [feature_names[i] for i in scores.argsort()[-top_n:][::-1]]
+    return ', '.join(keywords)
+
+cluster_descriptions = {}
+for cluster_idx, items in clustered_requirements.items():
+    cluster_descriptions[cluster_idx] = extract_keywords(items, top_n=3)
+
+# Step 6: Output the Clusters
 print("\nClustered Requirements:")
 for cluster, items in clustered_requirements.items():
-    print(f"\nCluster {cluster + 1}:")
+    description = cluster_descriptions[cluster]
+    print(f"\nCluster {cluster + 1}: {description.capitalize()}")
     for item in items:
         print(f"  - {item}")
