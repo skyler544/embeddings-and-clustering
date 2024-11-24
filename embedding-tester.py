@@ -2,6 +2,7 @@ from sentence_transformers import SentenceTransformer
 import numpy as np
 import faiss
 from sklearn.cluster import KMeans
+from sklearn.metrics.pairwise import cosine_similarity
 
 # Step 1: Define the functional requirements for EarlyBird system
 requirements_file = "early-bird-requirements.txt"
@@ -40,7 +41,7 @@ print(f"Number of embeddings in FAISS index: {index.ntotal}")
 
 # Set the number of clusters (adjust this based on your needs)
 # TODO try changing the number of clusters
-n_clusters = 3
+n_clusters = 5
 
 # TODO try other clustering strategies
 # Perform KMeans clustering
@@ -52,9 +53,29 @@ clustered_requirements = {i: [] for i in range(n_clusters)}
 for i, label in enumerate(labels):
     clustered_requirements[label].append(requirements[i])
 
-# Step 5: Output the Clusters
+# Step 5: Generate names for each cluster
+# Get centroids of clusters
+centroids = kmeans.cluster_centers_
+
+# Find the most representative sentence for each cluster (closest to the centroid)
+cluster_names = {}
+for cluster_idx in range(n_clusters):
+    # Get embeddings of items in the current cluster
+    cluster_items_embeddings = embeddings_np[labels == cluster_idx]
+
+    # Compute similarity of each item to the centroid
+    similarities = cosine_similarity([centroids[cluster_idx]], cluster_items_embeddings)
+
+    # Find the most representative sentence (highest similarity)
+    most_representative_idx = np.argmax(similarities)
+    representative_sentence = requirements[np.where(labels == cluster_idx)[0][most_representative_idx]]
+
+    # Use the representative sentence as the cluster name
+    cluster_names[cluster_idx] = representative_sentence
+
+# Step 6: Output the Clusters
 print("\nClustered Requirements:")
 for cluster, items in clustered_requirements.items():
-    print(f"\nCluster {cluster + 1}:")
+    print(f"\nCluster {cluster + 1}: {cluster_names[cluster]}")
     for item in items:
         print(f"  - {item}")
