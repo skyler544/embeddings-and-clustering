@@ -27,7 +27,12 @@ pip install sentence-transformers faiss-cpu scikit-learn numpy
 ## Usage
 
 The list of requirements lives in the file `early-bird-requirements.txt`. These requirements come from the "EarlyBird Case Study" as provided to students at the FH Technikum Wien for the Software Architecture module.
-The script reads this file, generates sentence-level embeddings, puts them into a vector database, then clusters the sentences. The `n_clusters` variable can be changed as needed.
+
+The script reads this file, generates sentence-level embeddings, puts them into a [FAISS](https://github.com/facebookresearch/faiss) vector database, then clusters the sentences using [k-means clustering](https://en.wikipedia.org/wiki/K-means_clustering).
+
+Next, the topic of each cluster is determined via keyword extraction. The extraction uses [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf), a method for determining how important a term is in a specific part of a text compared to how important it is to the *rest* of the text.
+
+The `n_clusters` variable can be changed as needed to fine-tune the number of clusters.
 
 The script downloads model files the first time they're used, meaning the first run of the script will take much longer than subsequent runs.
 
