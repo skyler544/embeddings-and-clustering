@@ -46,7 +46,7 @@ Number of embeddings in FAISS index: 41
 
 Clustered Requirements:
 
-Cluster 1:
+Cluster 1: Order, number, customers
   - Customers place orders exclusively via phone.
   - Customers provide a seven-digit customer number (including area code and checksum).
   - Phone clerks verify the customer's status (e.g., not blacklisted for bad payment behavior).
@@ -58,7 +58,7 @@ Cluster 1:
   - Payment records will include customer number, order number, amount, and payment due date.
   - The business report will include orders, products, amounts, clerks, customers, addresses, and order numbers.
 
-Cluster 2:
+Cluster 2: Delivery, clerks, packing
   - Breakfast must be delivered in under 25 minutes to all city areas.
   - Offer predefined breakfasts (e.g., mini-breakfast, luxury breakfast).
   - Each customer has one predefined address, eliminating the need to specify a delivery address.
@@ -71,14 +71,14 @@ Cluster 2:
   - Customers confirm delivery by entering a password in a browser on the delivery clerk’s smartphone.
   - The payment system will receive records for expected payments after packing completion.
 
-Cluster 3:
+Cluster 3: Web, application, specified
   - A web application will automate existing processes without altering them.
   - The web application will replace phone ordering, label text processing, and route planning tools.
   - The web application must support specified browsers.
   - The system will include a browser-based, unauthenticated product search feature.
   - A nightly business report will be generated automatically for managers.
 
-Cluster 4:
+Cluster 4: Products, blueprint, order
   - Customers can customize their breakfast from a list of simple products (e.g., croissants, orange juice).
   - Prepackaged products can contain simple products or other prepackaged products.
   - An order consists of a variety of simple and/or prepackaged products.
@@ -90,11 +90,10 @@ Cluster 4:
   - Each reprinted invoice gets a unique number.
   - Each product has a unique product code.
 
-Cluster 5:
+Cluster 5: Assembly, orders, canceled
   - Orders can be canceled before assembly.
   - Orders cannot be canceled after assembly.
   - Cancellations cannot be undone.
   - Order updates are not allowed; customers must cancel and place a new order.
   - Order cancellations can be made by sending a specific text string to the company number.
-
 ```
